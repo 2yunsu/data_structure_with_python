@@ -1,11 +1,12 @@
 from reverseString import *
 
-class ListStack:
+class ListStackrev:
 	def __init__(self):
 		self.__stack = []
 
 	def push(self, x):
 		self.__stack.append(x)
+		reverse(self)
 
 	def pop(self):
 		return self.__stack.pop()

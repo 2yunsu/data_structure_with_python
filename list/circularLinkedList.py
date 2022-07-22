@@ -1,4 +1,4 @@
-from DS.list.listNode import ListNode
+from list.listNode import ListNode
 
 class CircularLinkedList:
 	def __init__(self):

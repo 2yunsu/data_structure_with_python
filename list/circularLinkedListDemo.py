@@ -9,5 +9,5 @@ list.pop(0)
 print("count(3):", list.count(3))
 print("get(2):", list.get(2))
 list.printList()
-
+list.printInterval(0,3)
 # 코드 5-23

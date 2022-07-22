@@ -1,4 +1,4 @@
-from DS.stack.listStack import *
+from stack.listStack import *
 
 def reverse(str):
 	st = ListStack()

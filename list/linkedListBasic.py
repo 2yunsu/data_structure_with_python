@@ -121,6 +121,7 @@ class LinkedListBasic:
 				curr = curr.next
 		return (None, None)
 
+
 	# [알고리즘 5-6] 구현: 연결 리스트의 i번 노드 알려주기
 	def __getNode(self, i: int) -> ListNode:
 		curr = self.__head  # 더미 헤드, index: -1
@@ -135,9 +136,89 @@ class LinkedListBasic:
 			curr = curr.next
 		print()
 
+####만든 함수들
+
 	def printInterval(self, i: int, j:int):
-		for a in range(i, j+1):
-			print(self.get(a), end=' ')
+		if i >= 0 and j <= self.__numItems:
+			for a in range(i, j):
+				print(self.get(a), end=' ')
+
+		else:
+			print("index", i, ": out of bound in insert()")  # 필요 시 에러 처리
+
+	def numItems(self):
+		cnt = 0
+		curr = self.__head.next  # 0번 노드
+		while curr != None:
+			cnt += 1
+			curr = curr.next
+		print(cnt)
+		return cnt
+
+	def numItemsrec(self, cnt=0, curr='head'):
+		if curr == 'head':
+			curr = self.__head
+		if curr.next != None:
+			cnt += 1
+			curr = curr.next
+			return self.numItemsrec(cnt, curr)
+		else:
+			return cnt
+
+	def pop2(self, i: int, k: int):  # i번 노드 삭제. 고정 파라미터
+		curr = self.__head.next
+		if (i >= 0 and i <= self.__numItems - 1):
+			for a in range(i,i+k):
+				if curr.next != None:
+					prev = self.__getNode(i - 1)
+					curr = prev.next
+					prev.next = curr.next
+					retItem = curr.item
+					self.__numItems -= 1
+			return retItem
+		else:
+			return None
+
+	def samelist(self, node1, node2):
+		curr1 = node1.next
+		curr2 = node2.next
+		while curr1.next != None:
+			curr1 = curr1.next
+		while curr2.next != None:
+			curr2 = curr2.next
+		print('curr1, curr2', id(curr1), id(curr2))
+		if curr1 == curr2:
+			return True
+		else:
+			return False
+
+	def printaddress(self):
+		curr = self.__head.next  # 0번 노드: 더미 헤드 다음 노드
+		while curr != None:
+			print(curr, id(curr), end=' ')
+			curr = curr.next
+		print()
+
+	def getNodeglob(self, i: int) -> ListNode:
+		global curr
+		curr = self.__head  # 더미 헤드, index: -1
+		for index in range(i + 1):
+			curr = curr.next
+		return curr
+
+	def lastIndexOf(self,x):
+		cnt = self.count(x)
+		cnt2 = 0
+		curr = self.__head.next  # 0번 노드:  더미 헤드 다음 노드
+		for index in range(self.__numItems):
+			if curr.item == x:
+				cnt2 += 1
+			if cnt2 == cnt:
+				return index
+			else:
+				curr = curr.next
+		return -2  # 안 쓰는 인덱스
+		return idx
 
 
 # 코드 5-15

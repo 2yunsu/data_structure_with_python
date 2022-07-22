@@ -149,6 +149,32 @@ class CircularDoublyLinkedList:
 		else:
 			return False
 
+	def printInterval(self, i: int, j:int):
+		if i >= 0 and j <= self.__numItems:
+			for a in range(i, j+1):
+				print(self.get(a), end=' ')
+
+		else:
+			print("index", i, ": out of bound in insert()")  # 필요 시 에러 처리
+
+	def add(self, newItem) -> None:
+		self.append(newItem)
+		self.sort()
+
+	def lastIndexOf(self,x):
+		cnt = self.count(x)
+		cnt2 = 0
+		curr = self.__head.next  # 0번 노드:  더미 헤드 다음 노드
+		for index in range(self.__numItems):
+			if curr.item == x:
+				cnt2 += 1
+			if cnt2 == cnt:
+				return index
+			else:
+				curr = curr.next
+		return -2  # 안 쓰는 인덱스
+		return idx
+
 	def __iter__(self):  # generating iterator and return
 		return CircularDoublyLinkedListIterator(self)
 
@@ -163,5 +189,6 @@ class CircularDoublyLinkedListIterator:
 			item = self.iterPosition.item
 			self.iterPosition = self.iterPosition.next
 			return item
+
 
 # 코드 5-25
